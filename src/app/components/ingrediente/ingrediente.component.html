@@ -1,0 +1,43 @@
+<div class="principal col-10">
+    <div class="row">
+        <div class="col-6">
+            <h2>Ingredientes</h2>
+        </div>
+        <div class="buscador col-6">
+            <form class="d-flex">
+                <input class="form-control me-sm-2" type="text" placeholder="Search" ng-model="searchTags">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Unidad de Medida</th>
+                <th>Precio</th>
+                <th>Comentario</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ingrediente of ingredientes">
+                <td>{{ ingrediente.nombre }}</td>
+                <td>{{ ingrediente.cantidad }}</td>
+                <td>{{ ingrediente.unidadMedida }}</td>
+                <td>{{ ingrediente.precio }}</td>
+                <td>{{ ingrediente.comentario }}</td>
+                <td>
+                    <button type="button" class="btn btn-info" (click)="editarIngrediente()">Editar</button>
+                    <button type="button" (click)="eliminarIngrediente()">
+                        <img src="/src/assets/eliminar.jpg" alt="">
+                    </button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
