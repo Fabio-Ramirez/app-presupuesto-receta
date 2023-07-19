@@ -1,7 +1,8 @@
+<app-navbar></app-navbar>
 <div class="principal col-10">
-    <div class="row">
+    <div class="row mb-0">
         <div class="col-6">
-            <h2>Ingredientes</h2>
+            <h3>Ingredientes</h3>
         </div>
         <div class="buscador col-6">
             <form class="d-flex">
@@ -10,34 +11,65 @@
             </form>
         </div>
     </div>
+    <div class="d-flex justify-content-end mb-2">
+        <button type="button" class="btn btn-info" (click)="agregarIngrediente()"> <strong>Agregar Ingrediente</strong>
+        </button>
+    </div>
 
     <table class="table table-striped">
         <thead class="table-dark">
             <tr>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Unidad de Medida</th>
-                <th>Precio</th>
-                <th>Comentario</th>
-                <th>Opciones</th>
+                <th class="col-3">Nombre</th>
+                <th class="col-1">Cantidad</th>
+                <th class="col-1">Unidad de Medida</th>
+                <th class="col-2 text-center ">Precio</th>
+                <th class="col-4 text-center">Opciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let ingrediente of ingredientes">
-                <td>{{ ingrediente.nombre }}</td>
-                <td>{{ ingrediente.cantidad }}</td>
-                <td>{{ ingrediente.unidadMedida }}</td>
-                <td>{{ ingrediente.precio }}</td>
-                <td>{{ ingrediente.comentario }}</td>
-                <td>
-                    <button type="button" class="btn btn-info" (click)="editarIngrediente()">Editar</button>
-                    <button type="button" (click)="eliminarIngrediente()">
-                        <img src="/src/assets/eliminar.jpg" alt="">
-                    </button>
+            <tr *ngFor="let ingrediente of ingredientes"
+                [ngClass]="{'seleccionado': ingrediente === ingredienteSeleccionado}">
+                <td class="col-3">{{ ingrediente.nombre }}</td>
+                <td class="col-1 text-center">{{ ingrediente.cantidad }}</td>
+                <td class="col-1">{{ ingrediente.unidadMedida }}</td>
+                <td class="col-2 text-center"><strong> $ {{ ingrediente.precio }}</strong> </td>
+                <td class="col-4 text-center">
+                    <button type="button" class="btn btn-info"
+                        (click)="seleccionarIngrediente(ingrediente)">Editar</button>
+                    <button type="button" class="btn btn-danger" (click)="eliminarIngrediente()"> Eliminar</button>
+                    <button type="button" class="btn btn-secondary" (click)="editarPrecio(ingrediente)"> Editar
+                        Precio</button>
                 </td>
 
             </tr>
         </tbody>
     </table>
+</div>
 
+<!-- Modal Agregar Descripcion -->
+<div class="modal modal-visible" [ngClass]="{'modal-visible': modalEditarPrecio}" tabindex="-1" role="dialog"
+    aria-labelledby="tituloVentana" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-dark modal-title2" id="tituloVentana">Modificar precio de
+                    <strong>{{parametros.nombre}}</strong>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="cerrarModalPrecio()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Precio actual: <strong> $ {{parametros.precio}} </strong> </p>
+                <label for="precio">Precio nuevo:</label>
+                <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="precioNuevo" required>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="guardarPrecio()">Guardar Precio</button>
+            </div>
+        </div>
+    </div>
 </div>
