@@ -12,6 +12,7 @@ export class EditarIngredienteComponent implements OnInit {
 
   public ingredienteEditar: Ingrediente = new Ingrediente;
   public ingredienteId: string = '';
+  public modalConfirmacion: boolean = false;
   constructor(
     private ingredienteService: IngredienteService,
     private route: ActivatedRoute,
@@ -26,11 +27,17 @@ export class EditarIngredienteComponent implements OnInit {
   }
 
   editarIngrediente() {
+    this.modalConfirmacion = true;
+  }
+
+  cerrarModal() {
+    this.modalConfirmacion = false;
+  }
+  guardarModificacion() {
     this.ingredienteService.setIngrediente(this.ingredienteEditar).subscribe(ingrediente => {
       this.router.navigate(['/ingrediente']);
     })
   }
-
   volverIngrediente() {
     this.router.navigate(['/ingrediente']);
   }

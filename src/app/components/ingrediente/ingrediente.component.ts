@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Ingrediente } from '../../models/ingrediente';
 import { IngredienteService } from '../../services/ingrediente.service';
+import { ModalIngredienteService } from '../../services/modal-ingrediente.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,16 +14,13 @@ export class IngredienteComponent implements OnInit {
 
   public ingredientes!: Ingrediente[];
   public ingredienteSeleccionado: Ingrediente = new Ingrediente;
-  public modalEditarPrecio: boolean = false;
-  public precioActual: Number = 0;
-  public precioNuevo: Number = 0;
-  public nombreIngrediente: string = "";
   public idIngrediente: string = "";
   public parametros: any = {};
 
 
   constructor(
     private ingredienteService: IngredienteService,
+    public modalService: ModalIngredienteService,
     private router: Router
   ) {
 
@@ -49,8 +47,6 @@ export class IngredienteComponent implements OnInit {
         }
       });
     }
-
-
   }
 
   agregarIngrediente() {
@@ -62,24 +58,11 @@ export class IngredienteComponent implements OnInit {
   }
 
   editarPrecio(ingrediente: Ingrediente) {
-    this.modalEditarPrecio = true;
     this.parametros = {
       idIngrediente: ingrediente?._id as string,
       precio: ingrediente?.precio,
       nombre: ingrediente?.nombre
     }
-
-  }
-  cerrarModalPrecio() {
-    this.modalEditarPrecio = false;
-  }
-
-  guardarPrecio() {
-
-    this.parametros.precio = this.precioNuevo;
-    this.ingredienteService.modificarPrecio(this.parametros).subscribe(ingrediente => {
-      window.location.reload();
-    })
-
+    this.modalService.setModalVisiblePrecio(true);
   }
 }

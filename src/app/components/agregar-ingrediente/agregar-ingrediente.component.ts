@@ -40,9 +40,7 @@ export class AgregarIngredienteComponent implements OnInit {
       categoria: this.categoria
     }
     this.mostrarModal = true;
-    console.log("modal: ", this.mostrarModal)
     this.ingredienteService.agregarIngrediente(this.ingrediente).subscribe(ingrediente => {
-      //console.log('Ingrediente editado:', ingrediente);
 
     })
   }

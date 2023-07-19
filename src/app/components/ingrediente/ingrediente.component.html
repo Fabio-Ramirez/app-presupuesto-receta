@@ -46,17 +46,22 @@
     </table>
 </div>
 
-<!-- Modal Agregar Descripcion -->
+<app-modal *ngIf="modalService.getModalVisiblePrecio()" [parametrosModal]="parametros"></app-modal>
+<!-- Modal Agregar Descripcion 
 <div class="modal modal-visible" [ngClass]="{'modal-visible': modalEditarPrecio}" tabindex="-1" role="dialog"
     aria-labelledby="tituloVentana" aria-hidden="true">
+
+
+
+
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="text-dark modal-title2" id="tituloVentana">Modificar precio de
                     <strong>{{parametros.nombre}}</strong>
                 </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                    (click)="cerrarModalPrecio()">
+                <button type="button" class="close btn btn-danger " data-toggle="tooltip" data-placement="top"
+                    title="Cerrar" data-dismiss="modal" aria-label="Close" (click)="cerrarModalPrecio()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -68,8 +73,10 @@
 
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                    (click)="cerrarModalPrecio()">Cancelar</button>
                 <button type="button" class="btn btn-primary" (click)="guardarPrecio()">Guardar Precio</button>
             </div>
         </div>
     </div>
-</div>
+</div>-->
