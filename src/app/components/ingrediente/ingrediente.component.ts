@@ -14,8 +14,12 @@ export class IngredienteComponent implements OnInit {
 
   public ingredientes!: Ingrediente[];
   public ingredienteSeleccionado: Ingrediente = new Ingrediente;
+  public ingredienteEliminar: Ingrediente = new Ingrediente;
   public idIngrediente: string = "";
   public parametros: any = {};
+  search: string = '';
+  public modalEliminar: boolean = false;
+  public modalExitoEliminar: boolean = false;
 
 
   constructor(
@@ -53,8 +57,31 @@ export class IngredienteComponent implements OnInit {
     this.router.navigate(['/agregarIngrediente']);
   }
 
-  eliminarIngrediente() {
+  confirmacionEliminar() {
+    this.modalEliminar = true;
 
+  }
+
+  cerrarModal() {
+    this.modalEliminar = false;
+  }
+  cerrarModalExito() {
+    this.modalExitoEliminar = false;
+  }
+
+
+  eliminarIngrediente(ingrediente: Ingrediente) {
+    this.modalEliminar = true;
+    this.ingredienteEliminar = ingrediente;
+  }
+
+  confirmarEliminacion() {
+    if (this.ingredienteEliminar) {
+      this.ingredienteService.eliminarIngrediente(this.ingredienteEliminar).subscribe(ingrediente => {
+        this.modalEliminar = false;
+        window.location.reload();
+      });
+    }
   }
 
   editarPrecio(ingrediente: Ingrediente) {

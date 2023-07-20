@@ -33,5 +33,9 @@ export class IngredienteService {
 
     return this.http.patch<Ingrediente>(url, params);
   }
+  eliminarIngrediente(ingrediente: Ingrediente): Observable<Ingrediente> {
+    const url = `${this.apiUrl}/${ingrediente.nombre}`;
+    return this.http.delete<Ingrediente>(url);
+  }
 
 }

@@ -5,5 +5,5 @@ export class Ingrediente {
     unidadMedida: string = '';
     precio: Number = 0;
     comentario: string = '';
-    categoria: string = '';
+    estado: string = '';
 }

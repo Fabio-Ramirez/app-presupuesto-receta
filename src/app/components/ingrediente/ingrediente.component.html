@@ -6,13 +6,14 @@
         </div>
         <div class="buscador col-6">
             <form class="d-flex">
-                <input class="form-control me-sm-2" type="text" placeholder="Search" ng-model="searchTags">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control me-sm-2" type="text" placeholder="Buscar ingrediente.." [(ngModel)]="search"
+                    name="search">
             </form>
         </div>
     </div>
     <div class="d-flex justify-content-end mb-2">
         <button type="button" class="btn btn-info" (click)="agregarIngrediente()"> <strong>Agregar Ingrediente</strong>
+            <img src="../../../assets/icons-ingrediente.png" alt="Icono" width="30" height="30">
         </button>
     </div>
 
@@ -27,56 +28,60 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let ingrediente of ingredientes"
-                [ngClass]="{'seleccionado': ingrediente === ingredienteSeleccionado}">
-                <td class="col-3">{{ ingrediente.nombre }}</td>
-                <td class="col-1 text-center">{{ ingrediente.cantidad }}</td>
-                <td class="col-1">{{ ingrediente.unidadMedida }}</td>
-                <td class="col-2 text-center"><strong> $ {{ ingrediente.precio }}</strong> </td>
-                <td class="col-4 text-center">
-                    <button type="button" class="btn btn-info"
-                        (click)="seleccionarIngrediente(ingrediente)">Editar</button>
-                    <button type="button" class="btn btn-danger" (click)="eliminarIngrediente()"> Eliminar</button>
-                    <button type="button" class="btn btn-secondary" (click)="editarPrecio(ingrediente)"> Editar
-                        Precio</button>
-                </td>
+            <ng-container *ngFor="let ingrediente of ingredientes | filter: search">
+                <tr [ngClass]="{'seleccionado': ingrediente === ingredienteSeleccionado}"
+                    *ngIf="ingrediente.estado !== 'eliminado'">
+                    <td class="col-3">{{ ingrediente.nombre }}</td>
+                    <td class="col-1 text-center">{{ ingrediente.cantidad }}</td>
+                    <td class="col-1 text-center">{{ ingrediente.unidadMedida }}</td>
+                    <td class="col-2 text-center"><strong> $ {{ ingrediente.precio }}</strong> </td>
+                    <td class="col-4 text-center">
+                        <button type="button" class="btn btn-info" (click)="seleccionarIngrediente(ingrediente)">
+                            Editar <img src="../../../assets/icons-editar.png" alt="Icono" width="30" height="30">
+                        </button>
 
-            </tr>
+                        <button type="button" class="btn btn-secondary" (click)="editarPrecio(ingrediente)"> Modificar
+                            Precio<img src="../../../assets/icons-precio.png" alt="Icono" width="30"
+                                height="30"></button>
+                        <button type="button" class="btn btn-danger" (click)="eliminarIngrediente(ingrediente)">
+                            Eliminar<img src="../../../assets/icons-eliminar.png" alt="Icono" width="30"
+                                height="30"></button>
+                    </td>
+
+                </tr>
+            </ng-container>
         </tbody>
     </table>
 </div>
 
 <app-modal *ngIf="modalService.getModalVisiblePrecio()" [parametrosModal]="parametros"></app-modal>
-<!-- Modal Agregar Descripcion 
-<div class="modal modal-visible" [ngClass]="{'modal-visible': modalEditarPrecio}" tabindex="-1" role="dialog"
-    aria-labelledby="tituloVentana" aria-hidden="true">
 
-
-
-
-    <div class="modal-dialog" role="document">
+<div class="modal" [ngClass]="{'modal-visible': modalEliminar }" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
-            <div class="modal-header">
-                <div class="text-dark modal-title2" id="tituloVentana">Modificar precio de
-                    <strong>{{parametros.nombre}}</strong>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Desea eliminar el ingrediente? </p>
                 </div>
-                <button type="button" class="close btn btn-danger " data-toggle="tooltip" data-placement="top"
-                    title="Cerrar" data-dismiss="modal" aria-label="Close" (click)="cerrarModalPrecio()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Precio actual: <strong> $ {{parametros.precio}} </strong> </p>
-                <label for="precio">Precio nuevo:</label>
-                <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="precioNuevo" required>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"
-                    (click)="cerrarModalPrecio()">Cancelar</button>
-                <button type="button" class="btn btn-primary" (click)="guardarPrecio()">Guardar Precio</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                        (click)="cerrarModal()">No</button>
+                    <button type="button" class="btn btn-primary" (click)="confirmarEliminacion()">Si</button>
+                </div>
             </div>
         </div>
     </div>
-</div>-->
+</div>
+<div class="modal" [ngClass]="{'modal-visible': modalExitoEliminar }" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Ingrediente eliminado con exito!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

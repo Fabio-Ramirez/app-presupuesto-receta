@@ -15,7 +15,6 @@ export class AgregarIngredienteComponent implements OnInit {
   public unidadMedida: string = '';
   public precio: number = 0;
   public comentario: string = '';
-  public categoria: string = '';
   public ingrediente: Ingrediente = new Ingrediente;
   public mostrarModal: boolean = false;
 
@@ -37,7 +36,7 @@ export class AgregarIngredienteComponent implements OnInit {
       unidadMedida: this.unidadMedida,
       precio: this.precio,
       comentario: this.comentario,
-      categoria: this.categoria
+      estado: 'creado'
     }
     this.mostrarModal = true;
     this.ingredienteService.agregarIngrediente(this.ingrediente).subscribe(ingrediente => {

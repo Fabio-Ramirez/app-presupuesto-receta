@@ -11,6 +11,7 @@ import { EditarIngredienteComponent } from './components/editar-ingrediente/edit
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AgregarIngredienteComponent } from './components/agregar-ingrediente/agregar-ingrediente.component';
 import { ModalComponent } from './dashboard/modal/modal/modal.component';
+import { FilterPipe } from './pipe/filter.pipe';
 
 
 
@@ -22,7 +23,8 @@ import { ModalComponent } from './dashboard/modal/modal/modal.component';
     EditarIngredienteComponent,
     NavbarComponent,
     AgregarIngredienteComponent,
-    ModalComponent
+    ModalComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
