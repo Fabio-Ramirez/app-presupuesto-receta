@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IngredienteService } from '../../services/ingrediente.service';
 import { Ingrediente } from '../../models/ingrediente';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalIngredienteService } from 'src/app/services/modal-ingrediente.service';
 
 @Component({
   selector: 'app-editar-ingrediente',
@@ -13,10 +14,13 @@ export class EditarIngredienteComponent implements OnInit {
   public ingredienteEditar: Ingrediente = new Ingrediente;
   public ingredienteId: string = '';
   public modalConfirmacion: boolean = false;
+  public modoEdicion: boolean = false;
+  public parametros: any = {};
   constructor(
     private ingredienteService: IngredienteService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public modalService: ModalIngredienteService,
   ) { }
 
   ngOnInit() {

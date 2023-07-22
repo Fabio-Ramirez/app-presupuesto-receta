@@ -1,0 +1,25 @@
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    color: rgb(6, 6, 6);
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+.show {
+    opacity: 1;
+}
+
+.success {
+    background-color: #2ecc71;
+    /* Color de fondo para mensajes de éxito (verde) */
+}
+
+.error {
+    background-color: #e74c3c;
+    /* Color de fondo para mensajes de error (rojo) */
+}

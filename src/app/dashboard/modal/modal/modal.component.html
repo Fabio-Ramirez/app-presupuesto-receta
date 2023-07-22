@@ -14,7 +14,8 @@
             <div class="modal-body">
                 <p>Precio actual: <strong> $ {{parametrosModal.precio}} </strong> </p>
                 <label for="precio">Precio nuevo:</label>
-                <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="precioNuevo" required>
+                <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="precioNuevo"
+                    placeholder="0" appPlaceholderFocus required>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal"
@@ -23,4 +24,5 @@
             </div>
         </div>
     </div>
+    <app-toast [message]="mensajeToast" [show]="mostrarToastFlag" [type]="'success'"></app-toast>
 </div>

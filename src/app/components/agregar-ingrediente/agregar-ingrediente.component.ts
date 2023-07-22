@@ -11,9 +11,9 @@ import { Ingrediente } from 'src/app/models/ingrediente';
 export class AgregarIngredienteComponent implements OnInit {
 
   public nombre: string = '';
-  public cantidad: number = 0;
+  public cantidad!: number;
   public unidadMedida: string = '';
-  public precio: number = 0;
+  public precio!: number;
   public comentario: string = '';
   public ingrediente: Ingrediente = new Ingrediente;
   public mostrarModal: boolean = false;

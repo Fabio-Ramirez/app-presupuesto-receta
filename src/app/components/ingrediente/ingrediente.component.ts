@@ -20,6 +20,8 @@ export class IngredienteComponent implements OnInit {
   search: string = '';
   public modalEliminar: boolean = false;
   public modalExitoEliminar: boolean = false;
+  public mensajeToast: string = 'Este es un mensaje de éxito.';
+  public mostrarToastFlag: boolean = false;
 
 
   constructor(
@@ -79,7 +81,7 @@ export class IngredienteComponent implements OnInit {
     if (this.ingredienteEliminar) {
       this.ingredienteService.eliminarIngrediente(this.ingredienteEliminar).subscribe(ingrediente => {
         this.modalEliminar = false;
-        window.location.reload();
+        this.mostrarToast();
       });
     }
   }
@@ -91,5 +93,13 @@ export class IngredienteComponent implements OnInit {
       nombre: ingrediente?.nombre
     }
     this.modalService.setModalVisiblePrecio(true);
+  }
+
+  mostrarToast() {
+    this.mostrarToastFlag = true;
+    setTimeout(() => {
+      this.mostrarToastFlag = false;
+    }, 2000);
+    window.location.reload();
   }
 }

@@ -31,15 +31,12 @@
             <ng-container *ngFor="let ingrediente of ingredientes | filter: search">
                 <tr [ngClass]="{'seleccionado': ingrediente === ingredienteSeleccionado}"
                     *ngIf="ingrediente.estado !== 'eliminado'">
-                    <td class="col-3">{{ ingrediente.nombre }}</td>
+                    <td class="col-3" (click)="seleccionarIngrediente(ingrediente)" style="cursor: pointer">{{
+                        ingrediente.nombre }}</td>
                     <td class="col-1 text-center">{{ ingrediente.cantidad }}</td>
                     <td class="col-1 text-center">{{ ingrediente.unidadMedida }}</td>
                     <td class="col-2 text-center"><strong> $ {{ ingrediente.precio }}</strong> </td>
                     <td class="col-4 text-center">
-                        <button type="button" class="btn btn-info" (click)="seleccionarIngrediente(ingrediente)">
-                            Editar <img src="../../../assets/icons-editar.png" alt="Icono" width="30" height="30">
-                        </button>
-
                         <button type="button" class="btn btn-secondary" (click)="editarPrecio(ingrediente)"> Modificar
                             Precio<img src="../../../assets/icons-precio.png" alt="Icono" width="30"
                                 height="30"></button>

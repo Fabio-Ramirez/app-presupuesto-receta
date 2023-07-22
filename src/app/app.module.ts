@@ -12,6 +12,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AgregarIngredienteComponent } from './components/agregar-ingrediente/agregar-ingrediente.component';
 import { ModalComponent } from './dashboard/modal/modal/modal.component';
 import { FilterPipe } from './pipe/filter.pipe';
+import { ToastComponent } from './dashboard/toast/toast/toast.component';
+import { PlaceholderFocusDirective } from './dashboard/directive/placeholder-focus.directive';
 
 
 
@@ -24,7 +26,9 @@ import { FilterPipe } from './pipe/filter.pipe';
     NavbarComponent,
     AgregarIngredienteComponent,
     ModalComponent,
-    FilterPipe
+    FilterPipe,
+    ToastComponent,
+    PlaceholderFocusDirective
   ],
   imports: [
     BrowserModule,

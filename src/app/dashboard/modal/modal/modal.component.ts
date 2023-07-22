@@ -16,10 +16,13 @@ export class ModalComponent implements OnInit {
   public ingredientes!: Ingrediente[];
   public ingredienteSeleccionado: Ingrediente = new Ingrediente;
   public precioActual: Number = 0;
-  public precioNuevo: Number = 0;
+  public precioNuevo!: Number;
   public nombreIngrediente: string = "";
   public idIngrediente: string = "";
   public parametros: any = {};
+  public mensajeToast: string = '';
+  public mostrarToastFlag: boolean = false;
+  public toast: string = 'success';
 
 
   constructor(
@@ -40,8 +43,18 @@ export class ModalComponent implements OnInit {
   guardarPrecio() {
     this.parametrosModal.precio = this.precioNuevo;
     this.ingredienteService.modificarPrecio(this.parametrosModal).subscribe(ingrediente => {
-      window.location.reload();
+      this.mostrarToast();
     })
+
+  }
+
+  mostrarToast() {
+    this.mensajeToast = 'EXITO! Se cambio el precio del ingrediente.'
+    this.mostrarToastFlag = true;
+    setTimeout(() => {
+      this.mostrarToastFlag = false;
+      window.location.reload();
+    }, 2000);
 
   }
 }
