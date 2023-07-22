@@ -1,0 +1,38 @@
+/* Estilos básicos del botón con ícono */
+.button-with-icon {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 15px 30px;
+    /* Aumenta el padding para agrandar el botón */
+    font-size: 24px;
+    /* Aumenta el tamaño de la fuente para que el texto sea más grande */
+    border: none;
+    border-radius: 10px;
+    /* Aumenta el valor para redondear más los bordes */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo de transformación al hacer hover */
+.button-with-icon:hover {
+    transform: scale(1.15);
+    /* Aumenta el tamaño en 20% */
+}
+
+/* Animación de transición */
+.button-with-icon {
+    transition: transform 0.2s ease-in-out;
+    /* Duración de la animación y tipo de interpolación */
+}
+
+/* Estilos del ícono */
+.button-icon {
+    margin-left: 10px;
+    /* Espacio entre el texto y el ícono */
+    width: 30%;
+    /* Ajusta el ancho del ícono según tus necesidades */
+    height: 30%;
+    /* Ajusta la altura del ícono según tus necesidades */
+}

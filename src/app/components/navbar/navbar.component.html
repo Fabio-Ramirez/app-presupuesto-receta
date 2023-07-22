@@ -1,14 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/">PANADERIA LA FAMILIA </a>
+<nav class="navbar navbar-expand-lg navbar-light custom-navbar">
+    <a class="navbar-brand" routerLink="/">
+        <img src="../../../assets/icons-panaderia.png" alt="Icono" width="50" height="50">
+        PANADERIA LA FAMILIA </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" routerLink="/ingrediente">Ingredientes</a>
-            <a class="nav-item nav-link" href="#">Recetas</a>
-            <a class="nav-item nav-link" href="#">Presupuesto de Recetas</a>
+            <a class="nav-item nav-link" routerLink="/ingrediente" routerLinkActive="active">Ingredientes</a>
+            <a class="nav-item nav-link" routerLink="/recetas" routerLinkActive="active">Recetas</a>
+            <a class="nav-item nav-link" routerLink="/presupuesto" routerLinkActive="active">Presupuesto de Recetas</a>
         </div>
     </div>
 </nav>

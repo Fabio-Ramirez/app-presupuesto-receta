@@ -1,0 +1,34 @@
+/* Estilos de sombreado al pasar el cursor sobre las pestañas */
+.navbar-nav .nav-link:hover {
+    background-color: #69958a;
+    /* Cambiar el color de fondo al pasar el cursor */
+    border-radius: 5px;
+    /* Redondear los bordes para obtener un efecto de sombreado */
+
+
+}
+
+/* Estilo para resaltar la pestaña seleccionada */
+.navbar-nav .nav-link.active {
+    background-color: #2877cb;
+    /* Cambiar el color de fondo para la pestaña seleccionada */
+    border-radius: 5px;
+    /* Redondear los bordes para obtener un efecto de sombreado */
+}
+
+/* Estilos personalizados para el color del texto de los nav-item */
+.navbar-nav .nav-link {
+    color: #151414;
+    font-size: 18px;
+    /* Cambiar el color del texto a uno más claro (por ejemplo, blanco) */
+}
+
+
+/* Estilos personalizados para el navbar */
+.custom-navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+    height: 10%;
+    background-color: rgba(255, 255, 255, 0.68);
+}

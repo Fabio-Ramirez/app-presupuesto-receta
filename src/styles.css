@@ -5,4 +5,9 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
+
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nerko One', cursive;
+    font-family: 'Rubik', sans-serif;
+    font-family: 'Signika', sans-serif;
 }
