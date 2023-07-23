@@ -1,8 +1,22 @@
 .principal {
-    margin-top: 5%;
-    margin-left: 20%;
+    margin-top: 8%;
+    margin-left: 18%;
 }
 
 .margen {
     margin-left: 20%;
+}
+
+/* Estilos personalizados para el label */
+label {
+    font-size: 1.1rem;
+    /* 2 veces el tamaño de la fuente base (rem) */
+}
+
+/* Estilos personalizados para un botón más grande */
+.btn-custom-large {
+    font-size: 1.1rem;
+    /* 1.4 veces el tamaño de la fuente base (rem) */
+    padding: 0.5rem 0.7rem;
+    /* 1 rem de padding vertical y 2 rem de padding horizontal */
 }
