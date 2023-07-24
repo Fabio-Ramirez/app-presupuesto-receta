@@ -37,5 +37,10 @@ export class IngredienteService {
     const url = `${this.apiUrl}/${ingrediente.nombre}`;
     return this.http.delete<Ingrediente>(url);
   }
+  restaurarIngrediente(nombreIngrediente: string): Observable<Ingrediente> {
+    const url = `${this.apiUrl}/resturarIngrediente/${nombreIngrediente}`; // Ajusta la URL del endpoint según tu API
+
+    return this.http.patch<Ingrediente>(url, '');
+  }
 
 }

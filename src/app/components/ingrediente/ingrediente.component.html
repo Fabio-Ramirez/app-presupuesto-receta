@@ -1,9 +1,6 @@
 <app-navbar></app-navbar>
 <div class="principal col-10">
     <div class="row mb-0">
-        <div class="col-6">
-            <h3>Ingredientes</h3>
-        </div>
         <div class="buscador col-6">
             <form class="d-flex">
                 <input class="form-control me-sm-2" type="text" placeholder="Buscar ingrediente.." [(ngModel)]="search"
@@ -11,7 +8,7 @@
             </form>
         </div>
     </div>
-    <div class="d-flex justify-content-end mb-2">
+    <div class="agregarIngrediente  mb-2">
         <button type="button" class="btn btn-info" (click)="agregarIngrediente()"> <strong>Agregar Ingrediente</strong>
             <img src="../../../assets/icons-ingrediente.png" alt="Icono" width="30" height="30">
         </button>
@@ -37,10 +34,11 @@
                     <td class="col-1 text-center">{{ ingrediente.unidadMedida }}</td>
                     <td class="col-2 text-center"><strong> $ {{ ingrediente.precio }}</strong> </td>
                     <td class="col-4 text-center">
-                        <button type="button" class="btn btn-secondary" (click)="editarPrecio(ingrediente)"> Modificar
+                        <button type="button" class="btn btn-secondary mx-2" (click)="editarPrecio(ingrediente)">
+                            Modificar
                             Precio<img src="../../../assets/icons-precio.png" alt="Icono" width="30"
                                 height="30"></button>
-                        <button type="button" class="btn btn-danger" (click)="eliminarIngrediente(ingrediente)">
+                        <button type="button" class="btn btn-danger mx-2" (click)="eliminarIngrediente(ingrediente)">
                             Eliminar<img src="../../../assets/icons-eliminar.png" alt="Icono" width="30"
                                 height="30"></button>
                     </td>
@@ -52,14 +50,14 @@
 </div>
 
 <app-modal *ngIf="modalService.getModalVisiblePrecio()" [parametrosModal]="parametros"></app-modal>
-
+<app-toast [message]="mensajeToast" [show]="mostrarToastFlag" [type]="tipoToast"></app-toast>
 <div class="modal" [ngClass]="{'modal-visible': modalEliminar }" tabindex="-1" role="dialog"
     aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Desea eliminar el ingrediente? </p>
+                    <p>Desea eliminar el ingrediente: {{ingredienteEliminar.nombre}} ? </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"

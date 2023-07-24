@@ -14,6 +14,7 @@ import { ModalComponent } from './dashboard/modal/modal/modal.component';
 import { FilterPipe } from './pipe/filter.pipe';
 import { ToastComponent } from './dashboard/toast/toast/toast.component';
 import { PlaceholderFocusDirective } from './dashboard/directive/placeholder-focus.directive';
+import { ModalGeneralComponent } from './dashboard/modal/modal-general/modal-general.component';
 
 
 
@@ -28,7 +29,8 @@ import { PlaceholderFocusDirective } from './dashboard/directive/placeholder-foc
     ModalComponent,
     FilterPipe,
     ToastComponent,
-    PlaceholderFocusDirective
+    PlaceholderFocusDirective,
+    ModalGeneralComponent
   ],
   imports: [
     BrowserModule,

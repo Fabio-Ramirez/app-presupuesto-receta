@@ -51,5 +51,15 @@
         </div>
 
     </div>
-    <app-toast [message]="mensajeToast" [show]="mostrarToastFlag" [type]="'error'"></app-toast>
+    <!-- Contenido específico del modal -->
+    <app-modal-general [title]="modalTitle" [show]="showModal">
+
+        <p>{{ modalContent }}</p>
+        <div modal-footer>
+            <button class="btn btn-danger mx-2" (click)="closeModal()">NO</button>
+            <button class="btn btn-primary mx-2" (click)="confirmAction()">SI</button>
+        </div>
+    </app-modal-general>
+    <app-toast [message]="mensajeToast" [show]="mostrarToastFlag" [type]="tipoToast"
+        [progress]="progressToast"></app-toast>
 </div>

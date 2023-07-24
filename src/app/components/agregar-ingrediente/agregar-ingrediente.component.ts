@@ -19,8 +19,17 @@ export class AgregarIngredienteComponent implements OnInit {
   public comentario: string = '';
   public ingrediente: Ingrediente = new Ingrediente;
   public mostrarModal: boolean = false;
+
   public mensajeToast: string = '';
   public mostrarToastFlag: boolean = false;
+  public tipoToast: string = 'error';
+  public progressToast: number = 0;
+
+  public showModal: boolean = false;
+  public modalTitle: string = '';
+  public modalContent: string = '';
+  public tipoConfirmacion: string = '';
+  public ingredienteRestaurar: string = '';
 
   constructor(
     private ingredienteService: IngredienteService,
@@ -43,10 +52,6 @@ export class AgregarIngredienteComponent implements OnInit {
       estado: 'creado'
     }
     this.mostrarModal = true;
-
-
-    // ...
-
     this.ingredienteService.agregarIngrediente(this.ingrediente).subscribe(
       (ingrediente) => {
         // Respuesta exitosa (status 201)
@@ -56,12 +61,20 @@ export class AgregarIngredienteComponent implements OnInit {
         // Error en la solicitud (status 400 u otro error)
         if (error instanceof HttpErrorResponse) {
           // Aquí puedes mostrar un mensaje de error o realizar cualquier otra acción necesaria.
-          // Por ejemplo, mostrar el mensaje de error en un componente de toast.
-          this.mostrarToastFlag = true;
-          this.mensajeToast = "Error al agregar el ingrediente: " + error.error.message;
-          setTimeout(() => {
-            this.mostrarToastFlag = false;
-          }, 5000);
+          // Por ejemplo, mostrar el mensaje de error en un componente de modal.
+          if (error.error.existeIngrediente) {
+            this.showModal = true;
+            this.modalTitle = 'Error!! Ingrediente ya existente';
+            if (error.error.existeIngrediente.estado === 'eliminado') {
+              this.modalContent = `El ingrediente: ${error.error.existeIngrediente.nombre} fue eliminado! ¿Desea restaurarlo?`;
+              this.tipoConfirmacion = 'restaurar',
+                this.ingredienteRestaurar = error.error.existeIngrediente.nombre
+            }
+            else {
+              this.modalContent = `Desea agregar otro?`;
+              this.tipoConfirmacion = 'crear'
+            }
+          }
         } else {
           console.error("Error desconocido:", error);
           // Aquí puedes manejar otros tipos de errores si es necesario.
@@ -74,5 +87,34 @@ export class AgregarIngredienteComponent implements OnInit {
     this.router.navigate(['/ingrediente']);
   }
 
+
+  closeModal(): void {
+    if (this.tipoConfirmacion === 'crear') {
+      this.router.navigate(['/ingrediente']);
+    }
+    this.showModal = false;
+  }
+
+  confirmAction(): void {
+
+    if (this.tipoConfirmacion === 'restaurar') {
+      this.ingredienteService.restaurarIngrediente(this.ingredienteRestaurar).subscribe(ingrediente => {
+        this.mostrarToast();
+      })
+    }
+    this.closeModal();
+  }
+
+  mostrarToast() {
+    this.tipoToast = 'success';
+    this.mensajeToast = `EXITO! se restauro el ingrediente: ${this.ingredienteRestaurar}`;
+    this.mostrarToastFlag = true;
+    this.progressToast = 4000;
+    setTimeout(() => {
+      this.mostrarToastFlag = false;
+      this.router.navigate(['/ingrediente']);
+    }, 4000);
+
+  }
 
 }

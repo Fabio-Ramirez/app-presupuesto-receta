@@ -20,6 +20,8 @@ export class IngredienteComponent implements OnInit {
   search: string = '';
   public modalEliminar: boolean = false;
   public modalExitoEliminar: boolean = false;
+
+  public tipoToast: string = 'success';
   public mensajeToast: string = 'Este es un mensaje de éxito.';
   public mostrarToastFlag: boolean = false;
 
@@ -96,10 +98,12 @@ export class IngredienteComponent implements OnInit {
   }
 
   mostrarToast() {
+    this.mensajeToast = `EXITO! Se elimino el ingrediente: ${this.ingredienteEliminar.nombre}`;
     this.mostrarToastFlag = true;
     setTimeout(() => {
       this.mostrarToastFlag = false;
-    }, 2000);
-    window.location.reload();
+      this.router.navigate(['/ingrediente']);
+    }, 4000);
+
   }
 }

@@ -54,7 +54,7 @@ export class ModalComponent implements OnInit {
     setTimeout(() => {
       this.mostrarToastFlag = false;
       window.location.reload();
-    }, 2000);
+    }, 4000);
 
   }
 }

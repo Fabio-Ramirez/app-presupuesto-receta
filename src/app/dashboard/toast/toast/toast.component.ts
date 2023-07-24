@@ -11,10 +11,11 @@ export class ToastComponent implements OnInit {
   @Input() message: string = '';
   @Input() show: boolean = true;
   @Input() type: string = 'success';
+  @Input() progress: number = 0;
 
   constructor() { }
 
   ngOnInit() {
-    console.log("toast en component: ", this.message, this.show, this.type)
+
   }
 }

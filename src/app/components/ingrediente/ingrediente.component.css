@@ -10,9 +10,14 @@
 }
 
 .buscador {
-    float: right;
-    margin-bottom: 5%;
+
+    margin-bottom: 1%;
+    margin-left: 1%;
     padding-top: 0.5%;
+}
+
+.agregarIngrediente {
+    margin-left: 80%;
 }
 
 .seleccionado {
