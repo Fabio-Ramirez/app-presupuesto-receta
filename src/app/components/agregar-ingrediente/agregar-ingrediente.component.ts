@@ -31,6 +31,8 @@ export class AgregarIngredienteComponent implements OnInit {
   public tipoConfirmacion: string = '';
   public ingredienteRestaurar: string = '';
 
+  public modalExitoCrear: boolean = false;
+
   constructor(
     private ingredienteService: IngredienteService,
     private route: ActivatedRoute,
@@ -43,8 +45,7 @@ export class AgregarIngredienteComponent implements OnInit {
 
   agregarIngrediente() {
     this.ingrediente = {
-
-      nombre: this.nombre,
+      nombre: this.nombre.toUpperCase(),
       cantidad: this.cantidad,
       unidadMedida: this.unidadMedida,
       precio: this.precio,
@@ -55,7 +56,8 @@ export class AgregarIngredienteComponent implements OnInit {
     this.ingredienteService.agregarIngrediente(this.ingrediente).subscribe(
       (ingrediente) => {
         // Respuesta exitosa (status 201)
-        // Aquí puedes mostrar un mensaje de éxito o realizar cualquier otra acción necesaria.
+        this.modalExitoCrear = true;
+        this.cerrarModal();
       },
       (error) => {
         // Error en la solicitud (status 400 u otro error)
@@ -90,7 +92,7 @@ export class AgregarIngredienteComponent implements OnInit {
 
   closeModal(): void {
     if (this.tipoConfirmacion === 'crear') {
-      this.router.navigate(['/ingrediente']);
+      this.router.navigate(['/agregarIngrediente']);
     }
     this.showModal = false;
   }
@@ -99,6 +101,7 @@ export class AgregarIngredienteComponent implements OnInit {
 
     if (this.tipoConfirmacion === 'restaurar') {
       this.ingredienteService.restaurarIngrediente(this.ingredienteRestaurar).subscribe(ingrediente => {
+        this.mensajeToast = `EXITO! se restauro el ingrediente: ${this.ingredienteRestaurar}`;
         this.mostrarToast();
       })
     }
@@ -107,7 +110,6 @@ export class AgregarIngredienteComponent implements OnInit {
 
   mostrarToast() {
     this.tipoToast = 'success';
-    this.mensajeToast = `EXITO! se restauro el ingrediente: ${this.ingredienteRestaurar}`;
     this.mostrarToastFlag = true;
     this.progressToast = 4000;
     setTimeout(() => {
@@ -115,6 +117,13 @@ export class AgregarIngredienteComponent implements OnInit {
       this.router.navigate(['/ingrediente']);
     }, 4000);
 
+  }
+
+  cerrarModal() {
+    setTimeout(() => {
+      this.modalExitoCrear = false;
+      this.router.navigate(['/ingrediente']);
+    }, 4000);
   }
 
 }

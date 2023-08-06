@@ -20,3 +20,14 @@ label {
     padding: 0.5rem 0.7rem;
     /* 1 rem de padding vertical y 2 rem de padding horizontal */
 }
+
+.modal-visible {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(112, 112, 112, 0.78);
+    top: 0;
+    left: 0;
+    z-index: 3;
+}

@@ -51,12 +51,14 @@
 
 <app-modal *ngIf="modalService.getModalVisiblePrecio()" [parametrosModal]="parametros"></app-modal>
 <app-toast [message]="mensajeToast" [show]="mostrarToastFlag" [type]="tipoToast"></app-toast>
+
 <div class="modal" [ngClass]="{'modal-visible': modalEliminar }" tabindex="-1" role="dialog"
     aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-content">
-                <div class="modal-body">
+                <div class="modal-body text-center">
+                    <img src="../../../assets/icons-pregunta.png" alt="Icono" width="50" height="50">
                     <p>Desea eliminar el ingrediente: {{ingredienteEliminar.nombre}} ? </p>
                 </div>
                 <div class="modal-footer">
@@ -73,7 +75,10 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-content">
-                <div class="modal-body">
+                <div class="modal-body text-center">
+                    <img src="../../../assets/icons-ok.png" alt="Icono" width="50" height="50">
+                </div>
+                <div class="modal-footer">
                     <p>Ingrediente eliminado con exito!</p>
                 </div>
             </div>

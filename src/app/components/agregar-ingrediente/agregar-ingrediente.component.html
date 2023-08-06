@@ -63,3 +63,19 @@
     <app-toast [message]="mensajeToast" [show]="mostrarToastFlag" [type]="tipoToast"
         [progress]="progressToast"></app-toast>
 </div>
+
+<div class="modal" [ngClass]="{'modal-visible': modalExitoCrear }" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="../../../assets/icons-ok.png" alt="Icono" width="50" height="50">
+                </div>
+                <div class="modal-footer">
+                    <p>Ingrediente {{ingrediente.nombre}} creado con exito!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

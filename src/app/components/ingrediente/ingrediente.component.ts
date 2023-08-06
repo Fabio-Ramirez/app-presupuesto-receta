@@ -102,7 +102,7 @@ export class IngredienteComponent implements OnInit {
     this.mostrarToastFlag = true;
     setTimeout(() => {
       this.mostrarToastFlag = false;
-      this.router.navigate(['/ingrediente']);
+      window.location.reload();
     }, 4000);
 
   }
