@@ -15,9 +15,11 @@ export class IngredienteComponent implements OnInit {
   public ingredientes!: Ingrediente[];
   public ingredienteSeleccionado: Ingrediente = new Ingrediente;
   public ingredienteEliminar: Ingrediente = new Ingrediente;
+  public ingredienteOpcion: Ingrediente = new Ingrediente;
   public idIngrediente: string = "";
   public parametros: any = {};
   search: string = '';
+  public verOpcion = true;
   public modalEliminar: boolean = false;
   public modalExitoEliminar: boolean = false;
 
@@ -25,6 +27,8 @@ export class IngredienteComponent implements OnInit {
   public mensajeToast: string = 'Este es un mensaje de éxito.';
   public mostrarToastFlag: boolean = false;
 
+  public mostrarIngredienteEliminados: boolean = false;
+  public volver = true;
 
   constructor(
     private ingredienteService: IngredienteService,
@@ -79,6 +83,11 @@ export class IngredienteComponent implements OnInit {
     this.ingredienteEliminar = ingrediente;
   }
 
+  verOpciones(ingrediente: Ingrediente) {
+    this.ingredienteOpcion = ingrediente;
+    this.verOpcion = false;
+  }
+
   confirmarEliminacion() {
     if (this.ingredienteEliminar) {
       this.ingredienteService.eliminarIngrediente(this.ingredienteEliminar).subscribe(ingrediente => {
@@ -105,5 +114,15 @@ export class IngredienteComponent implements OnInit {
       window.location.reload();
     }, 4000);
 
+  }
+
+  mostrarEliminados() {
+    this.mostrarIngredienteEliminados = true;
+  }
+
+  // Método que maneja los datos enviados por el componente hijo
+  onShowChanged(show: boolean) {
+    this.mostrarIngredienteEliminados = show;
+    // Realizar acciones adicionales según sea necesario
   }
 }

@@ -8,45 +8,82 @@
             </form>
         </div>
     </div>
-    <div class="agregarIngrediente  mb-2">
-        <button type="button" class="btn btn-info" (click)="agregarIngrediente()"> <strong>Agregar Ingrediente</strong>
-            <img src="../../../assets/icons-ingrediente.png" alt="Icono" width="30" height="30">
-        </button>
+
+    <div *ngIf="!mostrarIngredienteEliminados">
+        <div class="agregarIngrediente mb-2">
+            <button type="button" class="btn btn-info" (click)="agregarIngrediente()">
+                <strong>Agregar Ingrediente</strong>
+                <img src="../../../assets/icons-ingrediente.png" alt="Icono" width="30" height="30">
+            </button>
+            <button type="button" class="btn btn-warning mx-1" (click)="mostrarEliminados()">
+                <strong>Restaurar Ingrediente</strong>
+                <img src="../../../assets/icons-restaurar.png" alt="Icono" width="30" height="30">
+            </button>
+        </div>
+
+        <div *ngIf="!ingredientes?.length" class="no-hay">NO HAY INGREDIENTES!</div>
+
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th class="col-3">Nombre</th>
+                    <th class="col-1">Cantidad</th>
+                    <th class="col-1">Unidad de Medida</th>
+                    <th class="col-2 text-center ">Precio</th>
+                    <th class="col-4 text-center">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let ingrediente of ingredientes | filter: search">
+                    <tr [ngClass]="{'seleccionado': ingrediente === ingredienteOpcion}"
+                        *ngIf="ingrediente.estado !== 'eliminado'">
+                        <td class="col-3 td-style" (click)="verOpciones(ingrediente)" style="cursor: pointer">
+                            {{ ingrediente.nombre }}</td>
+                        <td class="col-1 text-center td-style" (click)="verOpciones(ingrediente)"
+                            style="cursor: pointer">
+                            {{ ingrediente.cantidad }}
+                        </td>
+                        <td class="col-1 text-center td-style" (click)="verOpciones(ingrediente)"
+                            style="cursor: pointer">
+                            {{ ingrediente.unidadMedida }}
+                        </td>
+                        <td class="col-2 text-center td-style" (click)="verOpciones(ingrediente)"
+                            style="cursor: pointer">
+                            <strong> $ {{ ingrediente.precio }}</strong>
+                        </td>
+                        <td class="col-4 text-center td-style" *ngIf="ingrediente !== ingredienteOpcion">
+                            <button type="button" class="btn btn-success" (click)="verOpciones(ingrediente)">
+                                VER
+                            </button>
+                        </td>
+                        <td class="col-4" *ngIf="ingrediente === ingredienteOpcion">
+                            <button type="button" class="btn btn-primary "
+                                (click)="seleccionarIngrediente(ingrediente)">
+                                Editar
+                                <img src="../../../assets/icons-editar.png" alt="Icono" width="30" height="30">
+                            </button>
+                            <button type="button" class="btn btn-secondary mx-1 " (click)="editarPrecio(ingrediente)">
+                                Cambiar Precio
+                                <img src="../../../assets/icons-precio.png" alt="Icono" width="30" height="30">
+                            </button>
+                            <button type="button" class="btn btn-danger" (click)="eliminarIngrediente(ingrediente)">
+                                Eliminar
+                                <img src="../../../assets/icons-eliminar.png" alt="Icono" width="30" height="30">
+                            </button>
+                        </td>
+
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
     </div>
 
-    <table class="table table-striped">
-        <thead class="table-dark">
-            <tr>
-                <th class="col-3">Nombre</th>
-                <th class="col-1">Cantidad</th>
-                <th class="col-1">Unidad de Medida</th>
-                <th class="col-2 text-center ">Precio</th>
-                <th class="col-4 text-center">Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let ingrediente of ingredientes | filter: search">
-                <tr [ngClass]="{'seleccionado': ingrediente === ingredienteSeleccionado}"
-                    *ngIf="ingrediente.estado !== 'eliminado'">
-                    <td class="col-3" (click)="seleccionarIngrediente(ingrediente)" style="cursor: pointer">{{
-                        ingrediente.nombre }}</td>
-                    <td class="col-1 text-center">{{ ingrediente.cantidad }}</td>
-                    <td class="col-1 text-center">{{ ingrediente.unidadMedida }}</td>
-                    <td class="col-2 text-center"><strong> $ {{ ingrediente.precio }}</strong> </td>
-                    <td class="col-4 text-center">
-                        <button type="button" class="btn btn-secondary mx-2" (click)="editarPrecio(ingrediente)">
-                            Modificar
-                            Precio<img src="../../../assets/icons-precio.png" alt="Icono" width="30"
-                                height="30"></button>
-                        <button type="button" class="btn btn-danger mx-2" (click)="eliminarIngrediente(ingrediente)">
-                            Eliminar<img src="../../../assets/icons-eliminar.png" alt="Icono" width="30"
-                                height="30"></button>
-                    </td>
+    <div *ngIf="mostrarIngredienteEliminados">
+        <app-restaurar-ingrediente [show]="mostrarIngredienteEliminados" (showChanged)="onShowChanged($event)"
+            [search]="search"></app-restaurar-ingrediente>
+    </div>
 
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
+
 </div>
 
 <app-modal *ngIf="modalService.getModalVisiblePrecio()" [parametrosModal]="parametros"></app-modal>
