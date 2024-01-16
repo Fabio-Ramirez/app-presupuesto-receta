@@ -17,4 +17,8 @@ export class MenuComponent {
     this.router.navigate(['/ingrediente']);
   }
 
+  irReceta(){
+    this.router.navigate(['/receta']);
+  }
+
 }

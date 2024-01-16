@@ -18,6 +18,13 @@ export class IngredienteService {
     const params = new HttpParams().set('id', id);
     return this.http.get<Ingrediente>(this.apiUrl + '/' + id);
   }
+
+  // En tu servicio
+  buscarIngredientes(term: string): Observable<Ingrediente[]> {
+    const url = `${this.apiUrl}/buscarIngredienteNombre/${term}`;
+    return this.http.get<Ingrediente[]>(url);
+  }
+
   setIngrediente(ingrediente: Ingrediente): Observable<Ingrediente> {
     const url = `${this.apiUrl}/${ingrediente._id}`; // Ajusta la URL del endpoint según tu API
 

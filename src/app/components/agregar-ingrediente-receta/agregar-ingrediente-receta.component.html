@@ -1,0 +1,55 @@
+<div class="col-7 d-flex justify-content-center mt-3">
+    <label for="agregarIng" class="text-center"><strong>AGREGAR INGREDIENTE</strong></label>
+</div>
+
+<div class="row">
+    <div class="form-group buscador col-6">
+        <form class="d-flex">
+            <input class="form-control me-sm-2" type="text" placeholder="Buscar ingrediente.." [(ngModel)]="search"
+                name="search" (input)="buscarIngredientes()">
+        </form>
+    </div>
+
+    <!-- Utiliza *ngIf y *ngFor para trabajar con datos asíncronos en el HTML -->
+    <div *ngIf="ingredientes">
+        <div class="row">
+            <div class="col-12">
+                <h3>Resultados de la búsqueda:</h3>
+                <ul>
+                    <li *ngFor="let ingrediente of ingredientes">
+                        <div class="form-group col-12">
+                            <div class="row">
+                                <div class="col-3">
+                                    {{ ingrediente.nombre }}
+                                </div>
+                                <div class="col-5">
+                                    <div class="row">
+                                        <div class="col-2 mx-1">
+                                            <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                                                data-placement="bottom" title="agregar">
+                                                <img src="../../../assets/icons-agregar.png" alt="Icono" width="30"
+                                                    height="30">
+                                            </button>
+                                        </div>
+                                        <div class="col-2 mx-1">
+                                            <button type="button" class="btn btn-danger" data-toggle="tooltip"
+                                                data-placement="top" title="eliminar">
+                                                <img src="../../../assets/icons-eliminar.png" alt="Icono" width="30"
+                                                    height="30">
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

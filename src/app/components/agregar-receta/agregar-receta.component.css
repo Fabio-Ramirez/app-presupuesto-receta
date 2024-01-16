@@ -1,0 +1,35 @@
+.principal {
+    margin-top: 5%;
+    margin-left: 10%;
+    background-color: rgba(13, 15, 32, 0.65);
+    border: 5px solid #ccc;
+    border-radius: 50px;
+    color: rgb(185, 193, 191);
+}
+
+.margen {
+    margin-left: 20%;
+}
+
+label {
+    font-size: 157%;
+}
+
+/* Estilos personalizados para un botón más grande */
+.btn-custom-large {
+    font-size: 1.1rem;
+    /* 1.4 veces el tamaño de la fuente base (rem) */
+    padding: 0.5rem 0.7rem;
+    /* 1 rem de padding vertical y 2 rem de padding horizontal */
+}
+
+.modal-visible {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(112, 112, 112, 0.78);
+    top: 0;
+    left: 0;
+    z-index: 3;
+}

@@ -16,6 +16,9 @@ import { ToastComponent } from './dashboard/toast/toast/toast.component';
 import { PlaceholderFocusDirective } from './dashboard/directive/placeholder-focus.directive';
 import { ModalGeneralComponent } from './dashboard/modal/modal-general/modal-general.component';
 import { RestaurarIngredienteComponent } from './components/restaurar-ingrediente/restaurar-ingrediente.component';
+import { RecetaComponent } from './components/receta/receta.component';
+import { AgregarRecetaComponent } from './components/agregar-receta/agregar-receta.component';
+import { AgregarIngredienteRecetaComponent } from './components/agregar-ingrediente-receta/agregar-ingrediente-receta.component';
 
 
 
@@ -32,7 +35,10 @@ import { RestaurarIngredienteComponent } from './components/restaurar-ingredient
     ToastComponent,
     PlaceholderFocusDirective,
     ModalGeneralComponent,
-    RestaurarIngredienteComponent
+    RestaurarIngredienteComponent,
+    RecetaComponent,
+    AgregarRecetaComponent,
+    AgregarIngredienteRecetaComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,9 @@ import { IngredienteComponent } from './components/ingrediente/ingrediente.compo
 import { MenuComponent } from './components/menu/menu.component';
 import { EditarIngredienteComponent } from './components/editar-ingrediente/editar-ingrediente.component';
 import { AgregarIngredienteComponent } from './components/agregar-ingrediente/agregar-ingrediente.component';
+import { RecetaComponent } from './components/receta/receta.component';
+import { AgregarRecetaComponent } from './components/agregar-receta/agregar-receta.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full' },
@@ -11,6 +14,8 @@ const routes: Routes = [
   { path: 'ingrediente', component: IngredienteComponent },
   { path: 'editarIngrediente/:id', component: EditarIngredienteComponent },
   { path: 'agregarIngrediente', component: AgregarIngredienteComponent },
+  { path: 'receta', component: RecetaComponent },
+  { path: 'agregarReceta', component: AgregarRecetaComponent },
   //Para cualquier otra ruta
   { path: '**', redirectTo: '/menu', pathMatch: 'full' }
 ];
