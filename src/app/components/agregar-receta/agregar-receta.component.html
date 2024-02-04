@@ -11,27 +11,47 @@
                     </div>
                     <div class="d-flex justify-content-center">
                         <input type="text" class="form-control" id=" producto" name="producto"
-                            placeholder="Ingrese nombre del producto..." [(ngModel)]="producto" required>
+                            placeholder="Ingrese nombre del producto..." [(ngModel)]="producto"
+                            #productoNgModel="ngModel" required>
+                    </div>
+                    <div *ngIf="productoNgModel.invalid && (productoNgModel.dirty || productoNgModel.touched)"
+                        class="text-danger">
+                        El campo es requerido.
                     </div>
                 </div>
                 <div class="col-7 d-flex justify-content-center mt-3">
                     <label for="producto" class="text-center"><strong>PRODUCCIÓN</strong></label>
                 </div>
                 <div class="row">
+                    <!-- Campo Cantidad -->
                     <div class="form-group col-4">
                         <label for="cantidad">Cantidad:</label>
                         <input type="number" class="form-control" id="cantidad" name="cantidad" [(ngModel)]="cantidad"
-                            required placeholder="0" appPlaceholderFocus>
+                            required placeholder="0" appPlaceholderFocus #cantidadNgModel="ngModel">
+                        <!-- Mostrar mensaje de error si el campo es inválido -->
+                        <div *ngIf="cantidadNgModel?.invalid && (cantidadNgModel?.dirty || cantidadNgModel?.touched)"
+                            class="text-danger">
+                            La cantidad es requerida.
+                        </div>
                     </div>
+
+                    <!-- Campo Unidad de Medida -->
                     <div class="form-group col-5">
                         <label for="unidadMedida">Unidad de Medida:</label>
                         <input type="text" class="form-control" id="unidadMedida" name="unidadMedida"
-                            [(ngModel)]="unidadMedida" required>
+                            [(ngModel)]="unidadMedida" required #unidadMedidaNgModel="ngModel">
+                        <!-- Mostrar mensaje de error si el campo es inválido -->
+                        <div *ngIf="unidadMedidaNgModel?.invalid && (unidadMedidaNgModel?.dirty || unidadMedidaNgModel?.touched)"
+                            class="text-danger">
+                            La unidad de medida es requerida.
+                        </div>
                     </div>
+
                 </div>
-                <app-agregar-ingrediente-receta></app-agregar-ingrediente-receta>
-                <div class="d-flex justify-content-end mt-3 mb-3">
-                    <button type="submit" class="btn btn-primary btn-custom-large mx-2">Agregar Receta</button>
+                <app-agregar-ingrediente-receta
+                    (ingredientesEnRecetaSend)="onIngredientesSeleccionados($event)"></app-agregar-ingrediente-receta>
+                <div class="d-flex justify-content-end mt-5 mb-3">
+                    <button type="submit" class="btn btn-primary btn-custom-large mx-2">Agregar</button>
                     <button type="submit" class="btn btn-danger btn-custom-large mx-2" (click)="cancelar()">
                         Cancelar
                     </button>
@@ -40,15 +60,21 @@
         </div>
 
     </div>
-    <!-- Contenido específico del modal -->
-    <app-modal-general [title]="modalTitle" [show]="showModal">
 
-        <p>{{ modalContent }}</p>
-        <div modal-footer>
-            <button class="btn btn-danger mx-2" (click)="closeModal()">NO</button>
-            <button class="btn btn-primary mx-2" (click)="confirmAction()">SI</button>
+    <!-- Modal -->
+    <div class="modal" [ngClass]="{'modal-visible': showModal}" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">{{ modalTitle }}</div>
+                    <button class="close btn btn-danger" (click)="closeModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    {{ modalContent }}
+                </div>
+            </div>
         </div>
-    </app-modal-general>
-    <app-toast [message]="mensajeToast" [show]="mostrarToastFlag" [type]="tipoToast"
-        [progress]="progressToast"></app-toast>
+    </div>
+
 </div>

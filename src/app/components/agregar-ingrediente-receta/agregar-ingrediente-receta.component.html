@@ -1,47 +1,27 @@
-<div class="col-7 d-flex justify-content-center mt-3">
-    <label for="agregarIng" class="text-center"><strong>AGREGAR INGREDIENTE</strong></label>
-</div>
-
 <div class="row">
-    <div class="form-group buscador col-6">
-        <form class="d-flex">
-            <input class="form-control me-sm-2" type="text" placeholder="Buscar ingrediente.." [(ngModel)]="search"
-                name="search" (input)="buscarIngredientes()">
-        </form>
-    </div>
-
-    <!-- Utiliza *ngIf y *ngFor para trabajar con datos asíncronos en el HTML -->
-    <div *ngIf="ingredientes">
-        <div class="row">
-            <div class="col-12">
-                <h3>Resultados de la búsqueda:</h3>
+    <div class="col-5 mt-3">
+        <label>
+            <p>INGREDIENTES</p>
+        </label>
+        <input class="form-control me-sm-2" type="text" placeholder="Buscar ingrediente.." [(ngModel)]="search"
+            name="search" (input)="buscarIngredientes()">
+        <!--  INGREDIENTES BUSCADOS -->
+        <div class="col-6 mt-2">
+            <div *ngIf="ingredientes.length > 0">
                 <ul>
                     <li *ngFor="let ingrediente of ingredientes">
-                        <div class="form-group col-12">
+                        <div class="form-group col-12 mt-1">
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-8">
                                     {{ ingrediente.nombre }}
                                 </div>
-                                <div class="col-5">
-                                    <div class="row">
-                                        <div class="col-2 mx-1">
-                                            <button type="button" class="btn btn-primary" data-toggle="tooltip"
-                                                data-placement="bottom" title="agregar">
-                                                <img src="../../../assets/icons-agregar.png" alt="Icono" width="30"
-                                                    height="30">
-                                            </button>
-                                        </div>
-                                        <div class="col-2 mx-1">
-                                            <button type="button" class="btn btn-danger" data-toggle="tooltip"
-                                                data-placement="top" title="eliminar">
-                                                <img src="../../../assets/icons-eliminar.png" alt="Icono" width="30"
-                                                    height="30">
-                                            </button>
-                                        </div>
-                                    </div>
-
+                                <div class="col-2 mx-1">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                                        data-placement="bottom" title="agregar"
+                                        (click)="agregarIngrediente(ingrediente)">
+                                        <img src="../../../assets/icons-agregar.png" alt="Icono" width="25" height="25">
+                                    </button>
                                 </div>
-
                             </div>
                         </div>
                     </li>
@@ -49,7 +29,71 @@
             </div>
         </div>
     </div>
-
-
-
+    <div class="col-7 mt-3">
+        <label>
+            <p>AGREGADOS</p>
+        </label>
+        <!--  INGREDIENTES AGREGADOS -->
+        <div *ngIf="ingredientesEnReceta.length > 0 && !showModal">
+            <div *ngFor="let ingredienteAgregado of ingredientesEnReceta" class="col-8">
+                <div class="row">
+                    <div class="col-6">
+                        {{ingredienteAgregado.nombre}}
+                    </div>
+                    <div class="col-2 mx-1 mb-1">
+                        <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top"
+                            title="eliminar">
+                            <img src="../../../assets/icons-eliminar.png" alt="Icono" width="25" height="25"
+                                (click)="eliminarIngrediente(ingredienteAgregado)">
+                        </button>
+                    </div>
+                    <!--
+                    <div *ngIf="!verMedidas(ingredienteSeleccionado)" class="col-2 mx-1 mb-1">
+                        <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top"
+                            title="editar">
+                            <img src="../../../assets/icons-editar.png" alt="Icono" width="25" height="25"
+                                (click)="editarIngrediente(ingredienteSeleccionado)">
+                        </button>
+                    </div>-->
+                    <div *ngIf="verMedidas(ingredienteAgregado)" class="col-3 mx-1 mb-1">
+                        <div class="row">
+                            <div class="col-5 mx-1" (click)="editarIngrediente(ingredienteAgregado)"
+                                style="cursor: pointer;">
+                                <strong>
+                                    {{ ingredienteAgregado?.produccion?.cantidad}}
+                                </strong>
+                            </div>
+                            <div class="col-5 " (click)="editarIngrediente(ingredienteAgregado)"
+                                style="cursor: pointer;">
+                                <strong>
+                                    {{ ingredienteAgregado?.produccion?.unidadMedida}}
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal" [ngClass]="{'modal-visible': showModal}" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">{{ modalTitle }}</div>
+                <button class="close btn btn-danger" (click)="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="number" class="form-control" id="cantidad" name="cantidad" [(ngModel)]="cantidad"
+                    placeholder="Cantidad" appPlaceholderFocus required>
+                <input type="text" class="form-control mt-2" id="unidadMedida" name="unidadMedida"
+                    [(ngModel)]="unidadMedida" placeholder="Unidad de medida..." required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" (click)="confirmAction()">Guardar</button>
+            </div>
+        </div>
+    </div>
 </div>

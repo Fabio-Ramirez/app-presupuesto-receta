@@ -1,9 +1,12 @@
-import { Ingrediente } from "./ingrediente";
+import { IngredienteEnReceta } from "./ingredienteEnReceta";
 export class Receta {
     _id?: string = '';
     producto: string = '';
-    cantidad: number = 0;
-    unidadMedida: string = '';
-    ingredientes: Ingrediente [] = [];
+    produccion = {
+        cantidad: 0,
+        unidadMedida: ''
+    }
+
+    ingredientes: IngredienteEnReceta[] = [];
     estado: string = '';
 }

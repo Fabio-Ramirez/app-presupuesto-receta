@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Ingrediente } from 'src/app/models/ingrediente';
-import { IngredienteService } from 'src/app/services/ingrediente.service';
 
 @Component({
   selector: 'app-modal-general',
@@ -15,7 +13,7 @@ export class ModalGeneralComponent {
   @Input() title: string = '';
   @Input() show: boolean = false;
 
-  closeModal(): void {
+  closeModal(){
     this.show = false;
   }
 
@@ -26,12 +24,6 @@ export class ModalGeneralComponent {
   }
 
   ngOnInit() {
-
   }
-
-
-
-
-
 
 }
