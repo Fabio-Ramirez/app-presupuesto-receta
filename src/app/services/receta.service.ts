@@ -22,6 +22,12 @@ export class RecetaService {
   agregarReceta(receta: Receta): Observable<Receta> {
     return this.http.post<Receta>(this.apiUrl, receta);
   }
+  modificarReceta(receta: Receta): Observable<Receta> {
+    console.error("servicion:", receta);
+    const url = `${this.apiUrl}/${receta._id}`; // Ajusta la URL del endpoint según tu API
+
+    return this.http.patch<Receta>(url, receta);
+  }
   /*setIngrediente(receta: Receta): Observable<Receta> {
     const url = `${this.apiUrl}/${receta._id}`; // Ajusta la URL del endpoint según tu API
 

@@ -15,6 +15,21 @@ label {
     font-size: 157%;
 }
 
+/* Estilo base para el campo deshabilitado */
+.disabled-input {
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    color: #777;
+    cursor: not-allowed;
+}
+
+/* Estilo adicional al pasar el cursor sobre el campo deshabilitado */
+.disabled-input:hover {
+    background-color: #f8f8f8; /* Puedes ajustar este color según tus preferencias */
+    color: #777;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Efecto de sombra al pasar el cursor */
+}
+
 /* Estilos personalizados para un botón más grande */
 .btn-custom-large {
     font-size: 1.1rem;

@@ -74,8 +74,8 @@ export class RecetaComponent {
   }
 
   verOpciones(receta: Receta) {
-    this.recetaOpcion = receta;
-    this.verOpcion = false;
+   
+    this.router.navigate(['/editarReceta', receta._id]);
   }
 
   confirmarEliminacion() {

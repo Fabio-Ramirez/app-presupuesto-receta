@@ -5,7 +5,8 @@
         <div class=" margen col-lg-12">
             <div class="row">
                 <div class="col-5 d-flex justify-content-center">
-                    <label for="producto" class="text-center"><strong>Receta:</strong></label>
+                    <label for="producto" class="text-center"><strong>Receta:
+                        </strong></label>
                 </div>
                 <div class="col-6 d-flex justify-content-center">
                     <label for="producto" class="text-center"><strong>PRODUCCIÓN</strong></label>
@@ -15,39 +16,30 @@
 
             <form (submit)="agregarReceta()">
                 <div class="row">
-
                     <div class="form-group col-5">
-
                         <div class="d-flex justify-content-center">
-                            <input type="text" class="form-control" id=" producto" name="producto"
-                                placeholder="Ingrese nombre del producto..." [(ngModel)]="producto"
-                                #productoNgModel="ngModel" required>
-                        </div>
-                        <div *ngIf="productoNgModel.invalid && (productoNgModel.dirty || productoNgModel.touched)"
-                            class="text-danger">
-                            El campo es requerido.
+                            <input type="text" class="form-control disabled-input" id="producto" name="producto"
+                                [value]="recetaEditar.producto" disabled>
                         </div>
                     </div>
                     <div class="col-6 ">
                         <div class="row">
                             <!-- Campo Cantidad -->
                             <div class="form-group col-6">
-
                                 <input type="number" class="form-control" id="cantidad" name="cantidad"
-                                    [(ngModel)]="cantidad" required placeholder="Cantidad" appPlaceholderFocus
-                                    #cantidadNgModel="ngModel">
+                                    [(ngModel)]="recetaEditar.produccion.cantidad" required placeholder="Cantidad"
+                                    appPlaceholderFocus #cantidadNgModel="ngModel">
+
                                 <!-- Mostrar mensaje de error si el campo es inválido -->
                                 <div *ngIf="cantidadNgModel?.invalid && (cantidadNgModel?.dirty || cantidadNgModel?.touched)"
                                     class="text-danger">
                                     La cantidad es requerida.
                                 </div>
                             </div>
-
                             <!-- Campo Unidad de Medida -->
                             <div class="form-group col-5">
-
                                 <input type="text" class="form-control" id="unidadMedida" name="unidadMedida"
-                                    [(ngModel)]="unidadMedida" placeholder="Unidad de medida" appPlaceholderFocus
+                                    [(ngModel)]="recetaEditar.produccion.unidadMedida" placeholder="Unidad de medida" appPlaceholderFocus
                                     required #unidadMedidaNgModel="ngModel">
                                 <!-- Mostrar mensaje de error si el campo es inválido -->
                                 <div *ngIf="unidadMedidaNgModel?.invalid && (unidadMedidaNgModel?.dirty || unidadMedidaNgModel?.touched)"
@@ -56,10 +48,11 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <app-agregar-ingrediente-receta
-                        (ingredientesEnRecetaSend)="onIngredientesSeleccionados($event)"></app-agregar-ingrediente-receta>
+                        (ingredientesEnRecetaSend)="onIngredientesSeleccionados($event)"
+                        [opcionBuscarIngredientes]="botonAgregarIngrediente"
+                        [ingredientesEnReceta]="ingredientesEnReceta"></app-agregar-ingrediente-receta>
 
                 </div>
                 <div class="margen-botones mt-5 mb-3">

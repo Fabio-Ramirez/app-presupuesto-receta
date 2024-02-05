@@ -15,6 +15,10 @@ label {
     font-size: 157%;
 }
 
+.label {
+    font-size: 157%;
+}
+
 .buscador {
     margin-bottom: 1%;
     margin-left: 1%;
@@ -42,4 +46,51 @@ label {
     top: 0;
     left: 0;
     z-index: 3;
+}
+
+.modal-body {
+    color: black;
+}
+
+.text-danger {
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+}
+
+.ingrediente-agregado {
+    background-color: rgb(234, 239, 239);
+    color: black;
+}
+
+/* Estilo para el fondo del encabezado */
+.encabezado-fila {
+    background-color: #a6c2ed;
+    /* Puedes cambiar este color según tus preferencias */
+}
+
+/* Estilo para la tabla */
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 18px;
+}
+
+/* Estilo para todas las celdas */
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    /* Puedes cambiar este color según tus preferencias */
+    padding: 8px;
+    text-align: left;
+
+}
+
+/* Estilo para el fondo del encabezado */
+.encabezado-fila {
+    background-color: #f2f2f2;
+    /* Puedes cambiar este color según tus preferencias */
+}
+
+.custom-btn {
+    height: 90%;
 }

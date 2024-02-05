@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Observable, Subject, of } from 'rxjs';
 
@@ -14,32 +14,21 @@ import { IngredienteEnReceta } from 'src/app/models/ingredienteEnReceta';
 })
 export class AgregarIngredienteRecetaComponent implements OnInit {
 
-
-  @Output() ingredientesSeleccionadosSend = new EventEmitter<any[]>();
   @Output() ingredientesEnRecetaSend = new EventEmitter<IngredienteEnReceta[]>();
+  @Input() opcionBuscarIngredientes: boolean = false;
+  @Input() ingredientesEnReceta: IngredienteEnReceta[] = [];
 
   public searchTerms = new Subject<string>();
   public search = '';
-  public ingredientes$!: Observable<Ingrediente[]>;
   public ingredientes: Ingrediente[] = [];
-  public ingredientesAgregados: Ingrediente[] = [];
-  public ingredienteEnReceta: IngredienteEnReceta = new IngredienteEnReceta;
-  public ingredientesEnReceta: IngredienteEnReceta[] = [];
   public indiceEditado = -1;
   public ingredienteSeleccionado: Ingrediente = new Ingrediente;
   public ingredientesBuscadosEliminados: Ingrediente[] = [];
-  opcionAgregarIngrediente: boolean = false;
 
   public showModal: boolean = false;
   public modalTitle: string = '';
-  public modalContent: string = '';
-  public tipoConfirmacion: string = '';
-  public ingredienteRestaurar: string = '';
   public cantidad: number = 0;
   public unidadMedida: string = ''
-
-  public modalExitoCrear: boolean = false;
-
 
   constructor(
     private ingredienteService: IngredienteService
@@ -107,14 +96,6 @@ export class AgregarIngredienteRecetaComponent implements OnInit {
 
   }
 
-  actualizarIngredientesConCheck() {
-    if (!this.opcionAgregarIngrediente) {
-      this.ingredientes = [];
-      this.search = '';
-      this.searchTerms.next(this.search);
-    }
-  }
-
   closeModal() {
     this.showModal = false;
   }
@@ -157,5 +138,13 @@ export class AgregarIngredienteRecetaComponent implements OnInit {
     const ingredienteEnReceta = this.ingredientesEnReceta.find(item => item.id === ingrediente.id);
 
     return ingredienteEnReceta;
+  }
+
+  buscarIngrediente() {
+    this.opcionBuscarIngredientes = false
+  }
+
+  quitarBuscarIngrediente() {
+    this.opcionBuscarIngredientes = true
   }
 }

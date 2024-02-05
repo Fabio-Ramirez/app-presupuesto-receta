@@ -19,6 +19,7 @@ import { RestaurarIngredienteComponent } from './components/restaurar-ingredient
 import { RecetaComponent } from './components/receta/receta.component';
 import { AgregarRecetaComponent } from './components/agregar-receta/agregar-receta.component';
 import { AgregarIngredienteRecetaComponent } from './components/agregar-ingrediente-receta/agregar-ingrediente-receta.component';
+import { EditarRecetaComponent } from './components/editar-receta/editar-receta.component';
 
 
 
@@ -38,7 +39,8 @@ import { AgregarIngredienteRecetaComponent } from './components/agregar-ingredie
     RestaurarIngredienteComponent,
     RecetaComponent,
     AgregarRecetaComponent,
-    AgregarIngredienteRecetaComponent
+    AgregarIngredienteRecetaComponent,
+    EditarRecetaComponent
   ],
   imports: [
     BrowserModule,

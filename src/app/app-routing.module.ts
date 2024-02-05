@@ -6,6 +6,7 @@ import { EditarIngredienteComponent } from './components/editar-ingrediente/edit
 import { AgregarIngredienteComponent } from './components/agregar-ingrediente/agregar-ingrediente.component';
 import { RecetaComponent } from './components/receta/receta.component';
 import { AgregarRecetaComponent } from './components/agregar-receta/agregar-receta.component';
+import { EditarRecetaComponent } from './components/editar-receta/editar-receta.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'agregarIngrediente', component: AgregarIngredienteComponent },
   { path: 'receta', component: RecetaComponent },
   { path: 'agregarReceta', component: AgregarRecetaComponent },
+  { path: 'editarReceta/:id', component: EditarRecetaComponent },
   //Para cualquier otra ruta
   { path: '**', redirectTo: '/menu', pathMatch: 'full' }
 ];
