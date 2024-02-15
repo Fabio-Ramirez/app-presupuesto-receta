@@ -6,5 +6,4 @@ export class IngredienteEnReceta {
         cantidad: 0,
         unidadMedida: ''
     }
-
 }

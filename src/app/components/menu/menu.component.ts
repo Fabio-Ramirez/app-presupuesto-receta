@@ -17,8 +17,12 @@ export class MenuComponent {
     this.router.navigate(['/ingrediente']);
   }
 
-  irReceta(){
+  irReceta() {
     this.router.navigate(['/receta']);
+  }
+
+  irPresupuesto() {
+    this.router.navigate(['/presupuesto']);
   }
 
 }

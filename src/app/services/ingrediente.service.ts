@@ -52,5 +52,8 @@ export class IngredienteService {
     const url = `${this.apiUrl}/eliminados`;
     return this.http.get<Ingrediente[]>(url);
   }
+  getPrecioIngrediente(id: string): Observable<number> {
+    return this.http.get<number>(this.apiUrl + '/verPrecioIngrediente/' + id);
+  }
 
 }

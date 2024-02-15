@@ -15,12 +15,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class EditarRecetaComponent implements OnInit {
 
 
-  public botonAgregarIngrediente: boolean = true;
+  public botonAgregarIngrediente: boolean = false;
 
   public producto: string = '';
   public cantidad!: number;
   public unidadMedida: string = '';
-  public recetaEditar!: Receta;
+  public recetaEditar: Receta = new Receta;
   public recetaId: string = '';
   public comentario: string = '';
   public mostrarModal: boolean = false;
@@ -59,7 +59,6 @@ export class EditarRecetaComponent implements OnInit {
 
   agregarReceta() {
     if (!this.producto || this.cantidad === 0 || this.unidadMedida === '') {
-
       this.showModal = true;
       this.modalTitle = 'ERROR!! '
       this.modalContent = 'Falta completar datos.'
@@ -75,13 +74,12 @@ export class EditarRecetaComponent implements OnInit {
         ingredientes: this.ingredientesEnReceta,
         estado: 'creado'
       }
-      this.mostrarModal = true;
       this.recetaService.modificarReceta(this.receta).subscribe(
-        (receta) => {
+        (data) => {
           // Respuesta exitosa (status 201)
           this.showModal = true;
           this.modalTitle = 'Exito!!'
-          this.modalContent = 'Receta ' + receta.producto + ' modificado correctamente!'
+          this.modalContent = 'Receta ' + this.receta.producto + ' modificado correctamente!'
           this.cerrarModal();
         },
         (error) => {

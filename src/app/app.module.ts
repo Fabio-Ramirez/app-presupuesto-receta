@@ -20,6 +20,8 @@ import { RecetaComponent } from './components/receta/receta.component';
 import { AgregarRecetaComponent } from './components/agregar-receta/agregar-receta.component';
 import { AgregarIngredienteRecetaComponent } from './components/agregar-ingrediente-receta/agregar-ingrediente-receta.component';
 import { EditarRecetaComponent } from './components/editar-receta/editar-receta.component';
+import { PresupuestoComponent } from './components/presupuesto/presupuesto.component';
+import { PresupuestoCalculoComponent } from './components/presupuesto-calculo/presupuesto-calculo.component';
 
 
 
@@ -40,7 +42,9 @@ import { EditarRecetaComponent } from './components/editar-receta/editar-receta.
     RecetaComponent,
     AgregarRecetaComponent,
     AgregarIngredienteRecetaComponent,
-    EditarRecetaComponent
+    EditarRecetaComponent,
+    PresupuestoComponent,
+    PresupuestoCalculoComponent
   ],
   imports: [
     BrowserModule,

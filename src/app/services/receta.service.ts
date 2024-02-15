@@ -9,6 +9,7 @@ import { Receta } from '../models/receta';
 export class RecetaService {
 
   private apiUrl = 'http://localhost:3001/receta';
+  public opcionBuscarIngredientes: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,6 @@ export class RecetaService {
     return this.http.post<Receta>(this.apiUrl, receta);
   }
   modificarReceta(receta: Receta): Observable<Receta> {
-    console.error("servicion:", receta);
     const url = `${this.apiUrl}/${receta._id}`; // Ajusta la URL del endpoint según tu API
 
     return this.http.patch<Receta>(url, receta);

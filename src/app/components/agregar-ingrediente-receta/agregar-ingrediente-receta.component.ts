@@ -6,6 +6,8 @@ import { Observable, Subject, of } from 'rxjs';
 import { Ingrediente } from 'src/app/models/ingrediente';
 import { IngredienteService } from 'src/app/services/ingrediente.service';
 import { IngredienteEnReceta } from 'src/app/models/ingredienteEnReceta';
+import { MedidaService } from 'src/app/util/medida.service';
+import { RecetaService } from 'src/app/services/receta.service';
 
 @Component({
   selector: 'app-agregar-ingrediente-receta',
@@ -24,14 +26,19 @@ export class AgregarIngredienteRecetaComponent implements OnInit {
   public indiceEditado = -1;
   public ingredienteSeleccionado: Ingrediente = new Ingrediente;
   public ingredientesBuscadosEliminados: Ingrediente[] = [];
+  // Por ejemplo, puedes acceder a una propiedad o método del servicio:
+  public unidadMedidaExistentes = this.medidaService.getUnidadIngrediente();
+
 
   public showModal: boolean = false;
   public modalTitle: string = '';
   public cantidad: number = 0;
-  public unidadMedida: string = ''
+  public unidadMedida: string = '';
 
   constructor(
-    private ingredienteService: IngredienteService
+    private ingredienteService: IngredienteService,
+    private medidaService: MedidaService,
+    public recetaService: RecetaService
   ) { }
 
   ngOnInit() {
@@ -97,7 +104,8 @@ export class AgregarIngredienteRecetaComponent implements OnInit {
   }
 
   closeModal() {
-    this.showModal = false;
+        this.showModal = false;
+    this.modalTitle = ''
   }
 
   confirmAction() {

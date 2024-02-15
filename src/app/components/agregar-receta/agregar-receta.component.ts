@@ -17,7 +17,8 @@ import { IngredienteEnReceta } from 'src/app/models/ingredienteEnReceta';
 export class AgregarRecetaComponent {
 
   public ingredientesSeleccionadosSend: Ingrediente[] = [];
-  public ingredientesEnRecetaSend: IngredienteEnReceta[] = [];
+
+  public botonAgregarIngrediente: boolean = false;
 
   public producto: string = '';
   public cantidad!: number;

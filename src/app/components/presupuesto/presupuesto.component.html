@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="principal col-10">
+    <div class="row mb-0">
+        <div class="buscador col-6">
+            <form class="d-flex">
+                <input class="form-control me-sm-2" type="text" placeholder="Buscar receta.." [(ngModel)]="search"
+                    name="search">
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="!mostrarRecetaEliminados" class="mt-5">
+        <div *ngIf="!recetas?.length" class="no-hay">NO HAY RECETAS!</div>
+
+        <table *ngIf="recetas?.length" class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th class="col-3">Producto</th>
+                    <th class="col-4 text-center">PRODUCCIÓN
+                        <div class="row">
+                            <div class="col-6">Cantidad</div>
+                            <div class="col-6">Unidad</div>
+                        </div>
+                    </th>
+                    <th class="col-5 text-center">Ingredientes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let receta of recetas | filter: search">
+                    <tr [ngClass]="{'seleccionado': receta === recetaOpcion}" *ngIf="receta.estado !== 'eliminado'">
+                        <td class="col-3 td-style" (click)="verOpciones(receta)" style="cursor: pointer">
+                            {{ receta.producto }}</td>
+                        <td class="col-4 text-center td-style" (click)="verOpciones(receta)" style="cursor: pointer">
+                            <div class="row">
+                                <div class="col-6">{{ receta.produccion.cantidad }} </div>
+                                <div class="col-6">{{ receta.produccion.unidadMedida }}</div>
+                            </div>
+                        </td>
+                        <td class="col-5 text-center td-style" *ngIf="receta !== recetaOpcion">
+                            <button type="button" class="btn btn-success" (click)="verOpciones(receta)">
+                                VER
+                            </button>
+                        </td>
+                        <td class="col-4" *ngIf="receta === recetaOpcion">
+                            <button type="button" class="btn btn-primary " (click)="seleccionarReceta(receta)">
+                                Editar
+                                <img src="../../../assets/icons-editar.png" alt="Icono" width="30" height="30">
+                            </button>
+                            <button type="button" class="btn btn-secondary mx-1 " (click)="editarPrecio(receta)">
+                                Cambiar Precio
+                                <img src="../../../assets/icons-precio.png" alt="Icono" width="30" height="30">
+                            </button>
+                            <button type="button" class="btn btn-danger" (click)="eliminarReceta(receta)">
+                                Eliminar
+                                <img src="../../../assets/icons-eliminar.png" alt="Icono" width="30" height="30">
+                            </button>
+                        </td>
+
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+</div>
