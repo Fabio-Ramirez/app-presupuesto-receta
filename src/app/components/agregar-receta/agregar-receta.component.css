@@ -37,7 +37,12 @@ label {
 .modal-title {
     color: black;
 }
-.modal-body{
+
+.modal-body {
+    color: black;
+}
+
+.modal-footer {
     color: black;
 }
 
@@ -46,6 +51,6 @@ label {
     margin-top: 0.2rem;
 }
 
-.margen-botones{
+.margen-botones {
     margin-left: 75%;
 }

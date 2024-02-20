@@ -44,18 +44,19 @@
             </div>
         </div>
     </div>
-    <div class="col-7 mt-4 margen">
+    <div class="col-10 mt-4 margen" >
         <div class="row">
-            <div class="col-6">
+            <div class="col-8">
                 <div class="label">Lista de ingredientes</div>
             </div>
             <div *ngIf="!opcionBuscarIngredientes" class="col-4 d-flex justify-content-end">
-                <button type="submit" class="btn btn-warning custom-btn" (click)="quitarBuscarIngrediente()">Quitar
-                    Busqueda</button>
+                <button type="submit" class="btn btn-warning custom-btn" (click)="agregarGastos()">
+                    Agregar Otros Gastos
+                </button>
             </div>
         </div>
         <!-- INGREDIENTES AGREGADOS -->
-        <div>
+        <div id="contenidoParaImprimir">
             <table class="table table-striped table-hover rounded">
                 <thead class="table-dark">
                     <tr class="encabezado-fila">
@@ -88,7 +89,34 @@
                         </td>
                     </tr>
                 </tbody>
+                <tbody class="ingrediente-agregado mt-0" *ngIf="listaGastos.length>0">
+                    <tr *ngFor="let gasto of listaGastos; let i = index">
+                        <td colspan="3" (click)="editarGasto(gasto,i)" style="cursor: pointer;">{{ gasto.nombre }}</td>
+                        <td class="text-center align-middle" (click)="editarGasto(gasto,i)" style="cursor: pointer;"
+                            colspan="1">
+                            ${{gasto.precio}}
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody class="ingrediente-agregado mt-0">
+                    <tr>
+                        <td class="text-center align-middle" colspan="2"><strong class="resaltar-texto">PRECIO
+                                TOTAL</strong></td>
+                        <td class="text-center align-middle" colspan="2 ">
+                            <strong class="resaltar-texto">
+                                ${{precioTotal.toFixed(2)}}
+                            </strong>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
+        </div>
+
+        <div class="margen-botones mt-5 mb-3">
+            <button type="submit" class="btn btn-primary btn-custom-large mx-2" (click)="imprimir()">Imprimir</button>
+            <button type="submit" class="btn btn-danger btn-custom-large mx-2" (click)="cancelar()">
+                Volver
+            </button>
         </div>
     </div>
 
@@ -99,10 +127,41 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="modal-title">{{ modalTitle }}</div>
-                    <button class="close btn btn-danger" (click)="closeModal()">&times;</button>
+                    <button type="button" class="close btn btn-danger" (click)="closeModal()">&times;</button>
                 </div>
                 <div class="modal-body">
-                    {{ modalContent }}
+                    <input type="number" class="form-control" id="cantidad" name="cantidad"
+                        [(ngModel)]="cantidadIngrediente" placeholder="Cantidad" appPlaceholderFocus required>
+                    <input type="text" class="form-control disabled-input" id="unidadMedida" name="unidadMedida"
+                        [(ngModel)]="unidadMedidaIngrediente" disabled>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" (click)="confirmAction()">Añadir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" [ngClass]="{'modal-visible': showModalAgregar}" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">{{ modalTitle }}</div>
+                    <button type="button" class="close btn btn-danger" (click)="closeModalGasto()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="nombreGasto"
+                        placeholder="Ingrese nombre.." appPlaceholderFocus required>
+                    <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="precioGasto"
+                        placeholder="Ingrese precio.." appPlaceholderFocus required>
+                </div>
+                <div class="modal-footer">
+                    <button *ngIf="opcionEditarGasto" type="button" class="btn btn-danger"
+                        (click)="eliminarGasto()">Eliminar</button>
+                    <button type="button" class="btn btn-success" (click)="confirmGasto()">{{opcionEditarGasto ?
+                        'Modificar': 'Añadir'}} </button>
                 </div>
             </div>
         </div>

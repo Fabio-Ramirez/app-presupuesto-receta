@@ -29,9 +29,11 @@ label {
 
 /* Estilo adicional al pasar el cursor sobre el campo deshabilitado */
 .disabled-input:hover {
-    background-color: #f8f8f8; /* Puedes ajustar este color según tus preferencias */
+    background-color: #f8f8f8;
+    /* Puedes ajustar este color según tus preferencias */
     color: #777;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Efecto de sombra al pasar el cursor */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    /* Efecto de sombra al pasar el cursor */
 }
 
 /* Estilos personalizados para un botón más grande */
@@ -56,7 +58,8 @@ label {
 .modal-title {
     color: black;
 }
-.modal-body{
+
+.modal-body {
     color: black;
 }
 
@@ -65,11 +68,11 @@ label {
     margin-top: 0.2rem;
 }
 
-.margen-botones{
+.margen-botones {
     margin-left: 75%;
 }
 
-.modal-visible2 {
+.modal-visible {
     display: block;
     position: fixed;
     width: 100%;
@@ -116,4 +119,9 @@ label {
 
 .custom-btn {
     height: 90%;
+}
+
+.resaltar-texto {
+    color: rgb(0, 55, 255);
+    font-size: 1.5rem;
 }

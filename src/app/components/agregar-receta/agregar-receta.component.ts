@@ -7,6 +7,7 @@ import { Receta } from '../../models/receta';
 import { RecetaService } from '../../services/receta.service';
 import { Ingrediente } from 'src/app/models/ingrediente';
 import { IngredienteEnReceta } from 'src/app/models/ingredienteEnReceta';
+import { MedidaService } from 'src/app/util/medida.service';
 
 @Component({
   selector: 'app-agregar-receta',
@@ -19,6 +20,7 @@ export class AgregarRecetaComponent {
   public ingredientesSeleccionadosSend: Ingrediente[] = [];
 
   public botonAgregarIngrediente: boolean = false;
+  public unidadMedidaExistentes = this.medidaService.getUnidadProducto();
 
   public producto: string = '';
   public cantidad!: number;
@@ -40,7 +42,8 @@ export class AgregarRecetaComponent {
 
   constructor(
     private recetaService: RecetaService,
-    private router: Router
+    private router: Router,
+    private medidaService: MedidaService
   ) { }
 
   ngOnInit() {
@@ -64,11 +67,12 @@ export class AgregarRecetaComponent {
         ingredientes: this.ingredientes,
         estado: 'creado'
       }
-      this.mostrarModal = true;
+
       this.recetaService.agregarReceta(this.receta).subscribe(
         (receta) => {
           // Respuesta exitosa (status 201)
           this.modalExitoCrear = true;
+          this.modalContent = `Receta: ${this.receta.producto} se creo correctamente`
           this.cerrarModal();
         },
         (error) => {

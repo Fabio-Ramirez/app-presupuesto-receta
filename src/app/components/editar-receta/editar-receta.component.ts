@@ -77,8 +77,7 @@ export class EditarRecetaComponent implements OnInit {
       this.recetaService.modificarReceta(this.receta).subscribe(
         (data) => {
           // Respuesta exitosa (status 201)
-          this.showModal = true;
-          this.modalTitle = 'Exito!!'
+          this.modalExitoCrear = true;
           this.modalContent = 'Receta ' + this.receta.producto + ' modificado correctamente!'
           this.cerrarModal();
         },

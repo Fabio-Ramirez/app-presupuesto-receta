@@ -15,6 +15,10 @@ label {
     font-size: 157%;
 }
 
+.modal-content{
+    color: black;
+}
+
 /* Estilos personalizados para un botón más grande */
 .btn-custom-large {
     font-size: 1.1rem;

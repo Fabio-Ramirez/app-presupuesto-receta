@@ -7,17 +7,18 @@ export class MedidaService {
 
   unidadIngrediente: string[] = ['kg', 'grs', 'lt', 'ml', 'cc']; // Puedes agregar más unidades según sea necesario
   unidadProducto: string[] = ['kg', 'grs', 'docena', 'mts', 'unidad', 'latas'];
+  ingredientesSinPrecio: string[] = ['agua'];
 
   constructor() { }
 
-  getUnidadIngrediente(){
+  getUnidadIngrediente() {
     return this.unidadIngrediente;
   }
 
-  getUnidadProducto(){
+  getUnidadProducto() {
     return this.unidadProducto;
   }
-  
+
   convertirUnidad(valor: number, unidadOrigen: string, unidadDestino: string): number {
     // Lógica de conversión aquí
     // Por ahora, supongamos que solo manejamos conversiones entre gramos (g) y kilogramos (kg)
@@ -27,6 +28,16 @@ export class MedidaService {
       return valor * 1000;
     }
 
+    // Agrega más lógica de conversión según sea necesario
+    return valor;
+  }
+
+  convertirValor(valor: number, cantidadOrigen: number, cantidadDestino: number): number {
+    // Lógica de conversión aquí
+    // Por ahora, supongamos que solo manejamos conversiones entre gramos (g) y kilogramos (kg)
+    if (cantidadOrigen !== cantidadDestino) {
+      return valor = (cantidadDestino * valor) / cantidadOrigen;
+    }
     // Agrega más lógica de conversión según sea necesario
     return valor;
   }

@@ -46,9 +46,12 @@
                             <!-- Campo Unidad de Medida -->
                             <div class="form-group col-5">
 
-                                <input type="text" class="form-control" id="unidadMedida" name="unidadMedida"
-                                    [(ngModel)]="unidadMedida" placeholder="Unidad de medida" appPlaceholderFocus
-                                    required #unidadMedidaNgModel="ngModel">
+                                <select class="form-control" id="unidadMedida" name="unidadMedida"
+                                    [(ngModel)]="unidadMedida" appPlaceholderFocus required
+                                    #unidadMedidaNgModel="ngModel">
+                                    <option *ngFor="let medida of unidadMedidaExistentes" [value]="medida">{{ medida }}
+                                    </option>
+                                </select>
                                 <!-- Mostrar mensaje de error si el campo es inválido -->
                                 <div *ngIf="unidadMedidaNgModel?.invalid && (unidadMedidaNgModel?.dirty || unidadMedidaNgModel?.touched)"
                                     class="text-danger">
@@ -85,6 +88,22 @@
                 </div>
                 <div class="modal-body">
                     {{ modalContent }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" [ngClass]="{'modal-visible': modalExitoCrear }" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <img src="../../../assets/icons-ok.png" alt="Icono" width="50" height="50">
+                    </div>
+                    <div class="modal-footer">
+                        <p>{{ modalContent }}</p>
+                    </div>
                 </div>
             </div>
         </div>

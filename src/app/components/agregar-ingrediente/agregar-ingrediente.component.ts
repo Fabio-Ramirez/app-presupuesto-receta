@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { IngredienteService } from '../../services/ingrediente.service';
 import { Ingrediente } from 'src/app/models/ingrediente';
+import { MedidaService } from 'src/app/util/medida.service';
 
 @Component({
   selector: 'app-agregar-ingrediente',
@@ -19,6 +20,7 @@ export class AgregarIngredienteComponent implements OnInit {
   public comentario: string = '';
   public ingrediente: Ingrediente = new Ingrediente;
   public mostrarModal: boolean = false;
+  public unidadMedidaExistentes = this.medidaService.getUnidadIngrediente();
 
   public mensajeToast: string = '';
   public mostrarToastFlag: boolean = false;
@@ -36,7 +38,8 @@ export class AgregarIngredienteComponent implements OnInit {
   constructor(
     private ingredienteService: IngredienteService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private medidaService: MedidaService
   ) { }
 
   ngOnInit() {
