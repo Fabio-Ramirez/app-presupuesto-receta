@@ -3,6 +3,7 @@ import { IngredienteService } from '../../services/ingrediente.service';
 import { Ingrediente } from '../../models/ingrediente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalIngredienteService } from 'src/app/services/modal-ingrediente.service';
+import { MedidaService } from 'src/app/util/medida.service';
 
 @Component({
   selector: 'app-editar-ingrediente',
@@ -16,11 +17,15 @@ export class EditarIngredienteComponent implements OnInit {
   public modalConfirmacion: boolean = false;
   public modoEdicion: boolean = false;
   public parametros: any = {};
+  public unidadMedidaExistentes = this.medidaService.getUnidadIngrediente();
+
+  public modalExitoCrear: boolean = false
   constructor(
     private ingredienteService: IngredienteService,
     private route: ActivatedRoute,
     private router: Router,
     public modalService: ModalIngredienteService,
+    private medidaService: MedidaService
   ) { }
 
   ngOnInit() {
@@ -39,11 +44,20 @@ export class EditarIngredienteComponent implements OnInit {
   }
   guardarModificacion() {
     this.ingredienteService.setIngrediente(this.ingredienteEditar).subscribe(ingrediente => {
-      this.router.navigate(['/ingrediente']);
+      this.modalExitoCrear = true
+      this.closeModal();
     })
   }
   volverIngrediente() {
     this.router.navigate(['/ingrediente']);
+  }
+
+  closeModal() {
+    setTimeout(() => {
+      this.modalExitoCrear = false
+      this.modalConfirmacion = false;
+      this.router.navigate(['/ingrediente']);
+    }, 4000);
   }
 
 }

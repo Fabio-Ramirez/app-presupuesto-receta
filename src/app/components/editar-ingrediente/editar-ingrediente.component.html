@@ -15,8 +15,17 @@
                 </div>
                 <div class="form-group col-6">
                     <label for="unidadMedida">Unidad de Medida:</label>
-                    <input type="text" class="form-control" id="unidadMedida" name="unidadMedida" required
-                        [(ngModel)]="ingredienteEditar.unidadMedida">
+                    <select class="form-control" id="unidadMedida" name="unidadMedida"
+                        [(ngModel)]="ingredienteEditar.unidadMedida" appPlaceholderFocus required
+                        #unidadMedidaNgModel="ngModel">
+                        <option *ngFor="let medida of unidadMedidaExistentes" [value]="medida">{{ medida }}
+                        </option>
+                    </select>
+                    <!-- Mostrar mensaje de error si el campo es inválido -->
+                    <div *ngIf="unidadMedidaNgModel?.invalid && (unidadMedidaNgModel?.dirty || unidadMedidaNgModel?.touched)"
+                        class="text-danger">
+                        La unidad de medida es requerida.
+                    </div>
                 </div>
             </div>
 
@@ -30,11 +39,6 @@
                         [(ngModel)]="ingredienteEditar.precio" appPlaceholderFocus>
                 </div>
 
-            </div>
-            <div class="form-group col-6">
-                <label for="comentario">Comentario:</label>
-                <textarea class="form-control" id="comentario" name="comentario"
-                    [(ngModel)]="ingredienteEditar.comentario"></textarea>
             </div>
             <div class="d-flex justify-content-end mt-2 mb-3">
                 <button type="button" class="btn btn-info mx-2" (click)="editarIngrediente()">
@@ -51,8 +55,8 @@
     </div>
 </div>
 
-<div class="modal" [ngClass]="{'modal-visible': modalConfirmacion }" tabindex="-1" role="dialog"
-    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div *ngIf="!modalExitoCrear" class="modal" [ngClass]="{'modal-visible': modalConfirmacion }" tabindex="-1"
+    role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-content">
@@ -64,6 +68,22 @@
                     <button type="button" class="btn btn-danger" data-dismiss="modal"
                         (click)="cerrarModal()">No</button>
                     <button type="button" class="btn btn-primary" (click)="guardarModificacion()">Si</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" [ngClass]="{'modal-visible': modalExitoCrear }" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="../../../assets/icons-ok.png" alt="Icono" width="50" height="50">
+                </div>
+                <div class="modal-footer">
+                    <p>Ingrediente {{ingredienteEditar.nombre}} modificado con exito!</p>
                 </div>
             </div>
         </div>
